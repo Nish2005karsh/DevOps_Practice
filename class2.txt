@@ -113,3 +113,27 @@ x = execute
 | `traceroute domain.com`      | Track packet path             |
 
 
+
+File System Heirarchy in Linux
+
+1.Windows 
+C:\
+Program File,User,Program,Perflogs
+2.Linux
+/
+|-- bin,/etc,/usr,/boot
+
+
+/home->home directory  for other users
+/root->home directory of root users(super user)
+/etc->config files
+/usr->consists  of default software
+/bin->commands used by other users
+/sbin->commands used by root user
+/boot->bootable files
+/opt->optimal softwarre
+
+Create files in linux
+===================
+ cat ,touch , vim,nano
+  
