@@ -60,3 +60,36 @@ Basic Linux Commands
 | `find /path -name file.txt` | Search for files               |
 | `locate file.txt`           | Quickly find file (uses index) |
 
+
+🔒 3️⃣ File Permissions & Ownership
+
+| Command                 | Description                 |
+| ----------------------- | --------------------------- |
+| `chmod 755 file.sh`     | Change file permissions     |
+| `chown user:group file` | Change file owner           |
+| `umask`                 | Default permission settings |
+| `ls -l`                 | Check file permissions      |
+
+🧠 Tip:
+
+r = read
+w = write
+x = execute
+
+
+⚙️ 4️⃣ System Information & Monitoring
+
+| Command                        | Description                      |
+| ------------------------------ | -------------------------------- |
+| `uname -a`                     | System info                      |
+| `hostname`                     | Display system name              |
+| `uptime`                       | How long system has been running |
+| `df -h`                        | Disk space usage                 |
+| `du -sh /folder`               | Folder size                      |
+| `free -m`                      | Memory usage                     |
+| `top` / `htop`                 | Real-time CPU/process usage      |
+| `ps aux`                       | Show running processes           |
+| `kill <pid>` / `kill -9 <pid>` | Kill process                     |
+| `history`                      | Show command history             |
+
+    
