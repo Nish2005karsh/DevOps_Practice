@@ -1,0 +1,62 @@
+origin->Bell Laboratory 
+linux begins for unix
+its an open source software
+unix was made by denis ritchie
+unics (originally)->uniplexed information and computing services
+it was generally features
+Then comes unix version 6 that become very popular 
+Version made by unix are macOs,Sun Solaris  and linux.They are together called as flavours of linux
+Linus torvalds created Linux of Helsinki Unniversity in 1991
+Linux is a kernel and gnu is software
+linux + gnu together make an operating system
+Linux ->RHEL(Red Hat),Fedora,Debian,Others like Ubuntu Centos  etc
+You can use OS as CLI and GUI
+CLI->Command Line Interface
+GUI->Graphical User Interface
+
+
+Linux Features:
+
+1->Open Source
+2->Secure
+3->Simplified updates for installed software
+4->Lightweight
+5->Multiuser and multitasking
+6->Multiple distribution like Fedora ,Redhat,Debian
+
+Learning Linux Commands
+=======================
+
+
+Basic Linux Commands
+====================
+
+🧩 1️⃣ Basic Linux Commands
+
+| Purpose                | Command                          | Description              |
+| ---------------------- | -------------------------------- | ------------------------ |
+| Show current directory | `pwd`                            | Prints working directory |
+| Change directory       | `cd /path`                       | Move between folders     |
+| List files             | `ls`, `ls -l`, `ls -a`, `ls -lh` | View files with options  |
+| Create directory       | `mkdir folder`                   | Make new folder          |
+| Remove directory       | `rmdir folder`                   | Delete empty folder      |
+| Create a file          | `touch file.txt`                 | Make new file            |
+| Copy file              | `cp file1 file2`                 | Copy file                |
+| Move / rename file     | `mv file1 file2`                 | Move or rename file      |
+| Delete file            | `rm file.txt`, `rm -rf folder`   | Remove file or folder    |
+
+
+📂 2️⃣ File Viewing & Editing
+
+| Command                     | Description                    |
+| --------------------------- | ------------------------------ |
+| `cat file.txt`              | Show file contents             |
+| `less file.txt`             | Scroll through file            |
+| `head -n 10 file.txt`       | Show first 10 lines            |
+| `tail -f logfile.log`       | Show last lines (live logs)    |
+| `nano file.txt`             | Edit file in terminal          |
+| `vim file.txt`              | Edit file (advanced editor)    |
+| `grep "pattern" file.txt`   | Search inside files            |
+| `find /path -name file.txt` | Search for files               |
+| `locate file.txt`           | Quickly find file (uses index) |
+

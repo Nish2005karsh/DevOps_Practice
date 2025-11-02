@@ -1,0 +1,40 @@
+What is devops?
+Its combination of Development and operations
+It’s a culture, methodology, and set of tools that bring together software development (Dev) and IT operations (Ops) to:
+1->Improve collaboration
+2->Automate processes
+3->Deliver software faster, more reliably, and with higher quality
+
+DevOps removes the wall between developers (who write code) and operations (who deploy and maintain it).
+
+How devops work 
+DevOps follows a continuous lifecycle often represented by the infinity loop (∞).
+Each phase feeds into the next, creating a cycle of improvement.
+
+| Phase          | Description                                          | Common Tools                   |
+| -------------- | ---------------------------------------------------- | ------------------------------ |
+| **1. Plan**    | Define features, user stories, and goals             | Jira, Trello, Azure Boards     |
+| **2. Code**    | Write application code and configuration             | Git, GitHub, GitLab, Bitbucket |
+| **3. Build**   | Compile and build software automatically             | Maven, Gradle, Jenkins         |
+| **4. Test**    | Run automated tests to ensure quality                | Selenium, JUnit, pytest        |
+| **5. Release** | Package and prepare the app for deployment           | Jenkins, GitHub Actions        |
+| **6. Deploy**  | Deliver software to production (manual or automated) | Docker, Kubernetes, Ansible    |
+| **7. Operate** | Maintain, monitor, and troubleshoot systems          | Prometheus, Grafana, Datadog   |
+| **8. Monitor** | Gather metrics to improve future releases            | ELK Stack, New Relic, Splunk   |
+
+
+➡️ The process is continuous integration (CI) + continuous delivery/deployment (CD) — often called CI/CD.
+
+💡 Example Workflow
+
+Developer pushes code to GitHub
+
+Jenkins detects the push → runs tests → builds Docker image
+
+Image is pushed to Docker Hub
+
+Kubernetes automatically deploys new version
+
+Prometheus monitors uptime and Grafana displays dashboards
+
+Everything happens automatically, reducing human error and speeding up delivery 🚀
