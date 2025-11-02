@@ -1,0 +1,174 @@
+Learning git
+
+What is git?
+Git is a free and open-source distributed version control system (DVCS) designed to handle everything from small to very large projects with speed and efficiency. It was originally created by Linus Torvalds in 2005 for the development of the Linux kernel.
+
+🧩 1️⃣ Git Basics
+
+| Command                                            | Description                |
+| -------------------------------------------------- | -------------------------- |
+| `git --version`                                    | Check Git version          |
+| `git config --global user.name "Your Name"`        | Set global username        |
+| `git config --global user.email "you@example.com"` | Set global email           |
+| `git config --list`                                | View all Git configuration |
+| `git help`                                         | Show Git help menu         |
+
+
+📁 2️⃣ Repository Setup
+
+| Command                           | Description                           |
+| --------------------------------- | ------------------------------------- |
+| `git init`                        | Initialize a new local Git repository |
+| `git clone <repo-url>`            | Clone a remote repository             |
+| `git remote -v`                   | List remote repositories              |
+| `git remote add origin <url>`     | Add remote repo connection            |
+| `git remote remove origin`        | Remove remote repo                    |
+| `git remote set-url origin <url>` | Change remote URL                     |
+
+
+📦 3️⃣ Adding & Committing Changes
+
+| Command                    | Description                         |
+| -------------------------- | ----------------------------------- |
+| `git status`               | Check modified/untracked files      |
+| `git add <file>`           | Stage a specific file               |
+| `git add .`                | Stage all changes                   |
+| `git reset <file>`         | Unstage a file                      |
+| `git diff`                 | Show changes before committing      |
+| `git commit -m "message"`  | Commit staged changes               |
+| `git commit -am "message"` | Add & commit tracked files directly |
+| `git log`                  | Show commit history                 |
+| `git log --oneline`        | Compact commit view                 |
+
+
+🌲 4️⃣ Branching & Merging
+
+| Command                     | Description                       |
+| --------------------------- | --------------------------------- |
+| `git branch`                | List branches                     |
+| `git branch <name>`         | Create new branch                 |
+| `git checkout <name>`       | Switch branch                     |
+| `git switch <name>`         | Modern way to switch branch       |
+| `git checkout -b <name>`    | Create & switch to new branch     |
+| `git merge <branch>`        | Merge another branch into current |
+| `git branch -d <name>`      | Delete branch                     |
+| `git branch -m old new`     | Rename branch                     |
+| `git diff branch1..branch2` | Compare branches                  |
+
+
+🔄 5️⃣ Working with Remote Repositories
+
+| Command                           | Description                          |
+| --------------------------------- | ------------------------------------ |
+| `git fetch origin`                | Fetch updates from remote (no merge) |
+| `git pull origin main`            | Fetch + merge from remote branch     |
+| `git push origin main`            | Push local commits to remote         |
+| `git push -u origin main`         | Set upstream tracking (first push)   |
+| `git push origin --delete branch` | Delete remote branch                 |
+| `git push --force`                | Force push changes (⚠️ careful!)     |
+
+
+
+🧹 6️⃣ Undoing Changes (Recovery)
+
+| Command                    | Description                                  |
+| -------------------------- | -------------------------------------------- |
+| `git restore <file>`       | Restore file from last commit                |
+| `git reset HEAD <file>`    | Unstage a file                               |
+| `git reset --soft HEAD~1`  | Undo last commit, keep changes staged        |
+| `git reset --hard HEAD~1`  | Undo last commit and discard changes         |
+| `git revert <commit-id>`   | Create new commit that reverses an older one |
+| `git checkout <commit-id>` | Checkout old commit (detached HEAD)          |
+| `git reflog`               | View all changes (safety net for resets)     |
+
+
+🧱 7️⃣ Stashing (Temporary Save)
+
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `git stash`       | Save uncommitted changes temporarily |
+| `git stash list`  | Show stash entries                   |
+| `git stash apply` | Reapply last stash                   |
+| `git stash pop`   | Reapply and remove stash             |
+| `git stash drop`  | Delete stash                         |
+| `git stash clear` | Clear all stashes                    |
+
+
+🔍 8️⃣ Viewing History & Information
+
+| Command                                      | Description                       |
+| -------------------------------------------- | --------------------------------- |
+| `git log`                                    | Full commit history               |
+| `git log --oneline --graph --decorate --all` | Visual graph of branches          |
+| `git show <commit-id>`                       | Show specific commit details      |
+| `git blame <file>`                           | Show who last modified each line  |
+| `git shortlog -s -n`                         | Show contributors by commit count |
+| `git tag`                                    | List all tags                     |
+| `git tag v1.0`                               | Create tag                        |
+| `git push origin v1.0`                       | Push tag to remote                |
+
+
+🧩 9️⃣ Git Tags & Releases
+
+| Command                                    | Description            |
+| ------------------------------------------ | ---------------------- |
+| `git tag v1.0`                             | Create lightweight tag |
+| `git tag -a v1.0 -m "version 1.0 release"` | Annotated tag          |
+| `git show v1.0`                            | View tag info          |
+| `git push origin v1.0`                     | Push single tag        |
+| `git push origin --tags`                   | Push all tags          |
+
+
+🧠 🔟 Collaboration & Review
+
+| Command                         | Description                              |
+| ------------------------------- | ---------------------------------------- |
+| `git pull-request` (GitHub CLI) | Create a pull request                    |
+| `git fetch upstream`            | Fetch from original repo                 |
+| `git merge upstream/main`       | Merge upstream changes                   |
+| `git cherry-pick <commit-id>`   | Apply one commit to another branch       |
+| `git rebase main`               | Reapply commits on top of another branch |
+| `git rebase -i HEAD~3`          | Interactive rebase (edit/squash commits) |
+
+
+🧰 11️⃣ Git Cleanup & Maintenance
+
+
+| Command         | Description                      |
+| --------------- | -------------------------------- |
+| `git gc`        | Clean up unnecessary files       |
+| `git prune`     | Remove unreachable objects       |
+| `git fsck`      | Check repo integrity             |
+| `git clean -f`  | Remove untracked files           |
+| `git clean -fd` | Remove untracked files & folders |
+
+
+folders
+🧱 12️⃣ Git in DevOps Workflows
+
+| Use Case               | Example                                    |
+| ---------------------- | ------------------------------------------ |
+| CI/CD triggers         | Git push → Jenkins/GitHub Actions pipeline |
+| Infrastructure as Code | Store Ansible, Terraform, Docker configs   |
+| Deployment automation  | Tag → build → deploy flow                  |
+| Collaboration          | Branching + Pull Requests                  |
+| Rollbacks              | Revert or checkout previous commits/tags   |
+
+⚡ Bonus: Common Git Aliases (for speed)
+
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.cm "commit -m"
+git config --global alias.st status
+git config --global alias.last "log -1 HEAD"
+
+
+Then you can type:
+
+git co main
+git cm "quick fix"
+git st
+git last
+
+

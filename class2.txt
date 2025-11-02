@@ -135,5 +135,10 @@ Program File,User,Program,Perflogs
 
 Create files in linux
 ===================
- cat ,touch , vim,nano
+ cat ,touch , vim,nano(vim,nano are editors)
+ touch file1,file2,file3->file created 
+ cat > file1
+ >->means redirect
+    
+  
   
