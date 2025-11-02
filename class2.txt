@@ -14,6 +14,11 @@ You can use OS as CLI and GUI
 CLI->Command Line Interface
 GUI->Graphical User Interface
 
+Linux-->H/W->Kernel->Shell->User
+Windows-->H/W->OS->Shell->User
+
+Linux has root and windows has administrator
+
 
 Linux Features:
 
@@ -93,3 +98,18 @@ x = execute
 | `history`                      | Show command history             |
 
     
+🌐 5️⃣ Networking Commands
+
+| Command                      | Description                   |
+| ---------------------------- | ----------------------------- |
+| `ifconfig` / `ip addr`       | Show network interfaces       |
+| `ping google.com`            | Test connectivity             |
+| `netstat -tuln` / `ss -tuln` | Show open ports               |
+| `nslookup domain.com`        | DNS lookup                    |
+| `curl url`                   | Fetch a web resource          |
+| `wget url`                   | Download a file               |
+| `scp file user@host:/path`   | Securely copy files to remote |
+| `ssh user@server`            | Connect to remote server      |
+| `traceroute domain.com`      | Track packet path             |
+
+

@@ -1,0 +1,71 @@
+Learning Linux Commands
+=======================
+
+🧱 6️⃣ User & Group Management
+
+| Command                  | Description       |
+| ------------------------ | ----------------- |
+| `whoami`                 | Current user      |
+| `id`                     | Show user ID info |
+| `adduser username`       | Add new user      |
+| `passwd username`        | Change password   |
+| `deluser username`       | Remove user       |
+| `groups`                 | Show groups       |
+| `usermod -aG group user` | Add user to group |
+| `su - username`          | Switch user       |
+
+
+📦 7️⃣ Package Management (Ubuntu/Debian)
+
+| Command             | Description             |
+| ------------------- | ----------------------- |
+| `apt update`        | Refresh repo info       |
+| `apt upgrade`       | Upgrade packages        |
+| `apt install nginx` | Install a package       |
+| `apt remove nginx`  | Remove package          |
+| `dpkg -l`           | List installed packages |
+
+
+For RedHat/CentOS
+
+| Command               | Description     |
+| --------------------- | --------------- |
+| `yum install package` | Install package |
+| `yum update`          | Update system   |
+| `yum remove package`  | Remove package  |
+
+
+🧰 8️⃣ Compression & Archiving
+
+| Command                       | Description         |
+| ----------------------------- | ------------------- |
+| `tar -cvf archive.tar folder` | Create tar archive  |
+| `tar -xvf archive.tar`        | Extract tar archive |
+| `gzip file.txt`               | Compress            |
+| `gunzip file.txt.gz`          | Decompress          |
+| `zip -r archive.zip folder`   | Zip folder          |
+| `unzip archive.zip`           | Unzip folder        |
+
+
+
+🧩 9️⃣ Process & Job Control
+
+| Command           | Description                  |
+| ----------------- | ---------------------------- |
+| `&`               | Run process in background    |
+| `jobs`            | Show background jobs         |
+| `fg`              | Bring job to foreground      |
+| `bg`              | Send job to background       |
+| `nohup command &` | Run command immune to logout |
+| `nice`, `renice`  | Set process priority         |
+
+
+🕓 🔟 Scheduling & Automation
+
+| Command              | Description            |
+| -------------------- | ---------------------- |
+| `crontab -e`         | Edit scheduled tasks   |
+| `crontab -l`         | List cron jobs         |
+| `at now + 5 minutes` | Schedule one-time task |
+| `/etc/cron.daily/`   | Folder for daily tasks |
+

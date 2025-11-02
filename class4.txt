@@ -1,0 +1,35 @@
+🧱 11️⃣ Disk & File System
+
+| Command                | Description           |
+| ---------------------- | --------------------- |
+| `mount /dev/sda1 /mnt` | Mount device          |
+| `umount /mnt`          | Unmount               |
+| `lsblk`                | List block devices    |
+| `fdisk -l`             | Partition info        |
+| `df -Th`               | Show filesystem types |
+
+
+🐳 12️⃣ DevOps-Relevant Utilities
+
+| Tool                           | Description                 |
+| ------------------------------ | --------------------------- |
+| `docker`                       | Container management        |
+| `kubectl`                      | Kubernetes CLI              |
+| `git`                          | Version control             |
+| `ansible`                      | Configuration automation    |
+| `terraform`                    | Infrastructure provisioning |
+| `systemctl start/stop service` | Manage system services      |
+| `journalctl`                   | View systemd logs           |
+
+
+🧠 Bonus: Useful Shortcuts & Tricks
+
+| Shortcut            | Action                       |
+| ------------------- | ---------------------------- |
+| `Ctrl + C`          | Stop current command         |
+| `Ctrl + Z`          | Suspend current command      |
+| `Ctrl + R`          | Search command history       |
+| `!!`                | Repeat last command          |
+| `!n`                | Run nth command from history |
+| `alias ll='ls -la'` | Create custom shortcut       |
+
