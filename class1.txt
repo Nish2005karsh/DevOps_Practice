@@ -32,9 +32,6 @@ Developer pushes code to GitHub
 Jenkins detects the push → runs tests → builds Docker image
 
 Image is pushed to Docker Hub
-
 Kubernetes automatically deploys new version
-
 Prometheus monitors uptime and Grafana displays dashboards
-
 Everything happens automatically, reducing human error and speeding up delivery 🚀

@@ -18,8 +18,6 @@ Linux-->H/W->Kernel->Shell->User
 Windows-->H/W->OS->Shell->User
 
 Linux has root and windows has administrator
-
-
 Linux Features:
 
 1->Open Source
