@@ -1,3 +1,68 @@
 Practicing Docker
- 
-Docker is 
+Happy Dockering!
+
+Docker Images
+1. Build an image from a Dockerfile:
+
+docker -t build image_name path_to_dockerfile
+# Example
+docker -t build myapp .
+
+2.List all local images:
+
+docker images
+# Example
+docker image  ls
+
+3. Pull an image from Docker Hub:
+
+docker pull image_name:tag
+# Example
+docker pull nginx:latest
+
+
+4. Remove a local image:
+
+docker rmi image_name:tag
+# Example
+docker rmi myapp:latest
+
+or 
+docker rm [image_name/image_id]
+# Example
+docker rm fd484f19954f
+
+
+5.5. Tag an image:
+
+docker tag source_image:tag new_image:tag
+# Example
+docker tag myapp:latest myapp:v1
+
+6. Push an image to Docker Hub:
+
+docker push image_name:tag
+# Example
+docker push myapp:v1
+
+7.7. Inspect details of an image:
+
+docker inspect image image_name:tag
+# Example
+docker inspect image myapp:v1
+
+8. Save an image to a tar archive:
+
+docker -o save image_name.tar image_name:tag
+# Example
+docker -o save myapp.tar myapp:v1
+
+9. Load an image from a tar archive:
+docker -i load image_name.tar
+# Example
+docker -i load image_name.tar
+
+10. Prune unused images:
+docker image prune
+
+
