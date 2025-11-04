@@ -1,0 +1,70 @@
+Docker containers
+1. Run a container from an image:
+docker run container_name image_name
+# Example
+docker run myapp
+
+2. Run a named container from an image:
+
+docker --name run container_name image_name:tag
+# Example
+docker --name run my_container myapp:v1
+
+3. List all running containers:
+docker ps
+
+4. List all containers (including stopped ones):
+docker -ps a
+
+5. Stop a running container:
+docker stop container_name_or_id
+# Example
+docker stop my_container
+
+6. Start a stopped container:
+docker start container_name_or_id
+# Example
+docker start my_container
+
+7. Run container in interactive mode:
+
+docker -it run container_name_or_id
+# Example
+docker -it run my_container
+
+
+8. Run container in interactive shell mode
+docker -it run container_name_or_id sh
+# Example
+docker -it run my_container sh
+
+9. Remove a stopped container:
+docker rm container_name_or_id
+# Example
+docker rm my_container
+
+10. Remove a running container (forcefully):
+docker -rm -f container_name_or_id
+# Example
+docker -rm -f my_container
+
+11. Inspect details of a container:
+docker inspect container_name_or_id
+#Example
+docker inspect my_container
+
+12. View container logs:
+docker logs container_name_or_id
+#Example
+docker logs my_container
+
+13. Pause a running container:
+docker pause container_name_or_id
+#Example
+docker pause my_container
+
+14. Unpause a paused container:
+docker unpause container_name_or_id
+#Example
+docker unpause my_container
+
