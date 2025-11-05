@@ -8,3 +8,16 @@ You’d write an app in Node.js 18, but your teammate had Node.js 16 — and the
 Production servers might have different libraries, OS versions, or dependencies.
 Setting up environments for each project took hours (installing Python, MySQL, Redis, etc.).
 Scaling apps meant manually configuring servers and copying code.
+
+So the world needed a standard, portable environment where:
+You can package your app and everything it needs.
+You can run it anywhere — laptop, server, or cloud — with identical behavior.
+The Solution → Docker
+
+Docker has 2 parts called as image and container
+Docker->A container is like a mini computer that includes apps dependencies +runtime
+Docker image->Blue print of that container
+Docker containers are a running instance of docker images
+
+Docker = A universal shipping container for software.
+Core Uses of Docker:
