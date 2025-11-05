@@ -98,3 +98,36 @@ Each service runs in its own process and communicates via APIs (usually HTTP/RES
 AWS offers cloud computing
 OpenStack ->Open source alternative for AWS
 Google created Kubernetes 
+
+Docker->Cri(Container Runtime Interface)
+Kubernetes->Orchestrator
+
+Kubernetes cluster->Bunch of worker  nodes+control plane(master node)
+node->Virtual machine 
+Kubectl is a cli tools connects with control plane
+declarative->Writing yaml(manifest)
+imperiative ways
+
+Kubernetes help in container management
+yt.com->container->people
+pod is  a scheduling unit
+P1->Create microservices
+P2->Containerize
+P3->CONtainer in Pods
+P4->deploy the Pods
+Controller are loops 5 pods->controller
+Deployment is a built in controller
+control plane
+POST API YAML FILES CREATE PODS  MANIFEST FILES
+Monokle->🧰 Monokle is an open-source YAML & Kubernetes configuration management tool.
+
+Controller manager->DS,CS(CURRENT STATE),DIFF,CHANGES
+ETCD
+Worker node has kube proxy,kublet and container runtime
+kublet->api server listen
+
+Kubernetes Installation
+Install kubectl on windows
+
+Tools to use monokel,lens,kubescape,datree,teleport and civio
+
