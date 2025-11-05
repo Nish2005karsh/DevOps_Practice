@@ -21,3 +21,28 @@ Docker containers are a running instance of docker images
 
 Docker = A universal shipping container for software.
 Core Uses of Docker:
+
+Consistency — same environment everywhere.
+Portability — run on any machine or cloud.
+Isolation — each app has its own sandbox.
+Scalability — spin up multiple containers easily.
+CI/CD Integration — automate builds & tests easily.
+
+Why was Kubernetes created?
+The Problem(after docker):
+Docker solved the packaging issue — but a new one appeared:
+Now I have hundreds of containers... who manages them?
+
+For example:
+You have 50 microservices (frontend, backend, database, cache, etc.).
+Each runs in its own Docker container.
+You need to deploy them on 10 machines.
+You must restart containers if they crash.
+You want to update apps with zero downtime.
+You want to automatically scale based on traffic.
+
+Doing this manually is a nightmare
+You’d need something to orchestrate all those containers.
+
+Solution ->Kubernetes
+Created by Google (open-sourced in 2014), Kubernetes was built to manage, schedule, and scale containers automatically.
