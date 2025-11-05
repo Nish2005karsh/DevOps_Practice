@@ -1,0 +1,68 @@
+Docker volumes
+1. Create a named volume:
+
+docker volume create volume_name
+#Example
+docker volume create my_volume
+
+2. List all volumes:
+docker volume ls
+
+3. Inspect details of a volume:
+docker inspect volume volume_name
+#Example
+docker inspect volume my_volume
+
+4. Remove a volume:
+docker volume rm volume_name
+#Example
+docker volume rm my_volume
+
+5. Run a container with a volume (mount):
+
+docker --name -v run container_name volume_name:/path/in/
+container image_name:tag
+# Example
+docker --name -v run my_container my_volume:/app/data myapp:v1
+
+6. Copy files between a container and a volume:
+
+docker cp local_file_or_directory container_name:/path/in/
+container
+# Example
+docker cp data.txt my_container:/app/data
+
+PORT MAPPING IN Docker
+
+1. Run a container with port mapping
+
+docker --name -p run container_name host_port:container_port
+image_name
+# Example
+docker --name -p run my_container 8080:80 myapp
+Here port 8080 is  being mapped with port 80
+
+2. List all networks:
+docker network ls
+
+3. Inspect details of a network:
+docker  network inspect network_name
+#Example
+docker network inspect my_network
+
+4. Create a user-defined bridge network:
+
+docker network create network_name
+#Example
+docker newtork create my_network
+
+5. Connect a container to a network:
+docker network connect network_name container_name
+#Example
+docker newtork connect my_network my_container
+
+6. Disconnect a container from a network:
+docker network disconnect network_name container_name
+#Example
+docker network disconnect my_network my_container
+

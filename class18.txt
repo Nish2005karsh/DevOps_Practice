@@ -1,0 +1,129 @@
+CI/CD PIPELINE
+What s  Jenkins?
+CI/CD stands for continuous integration/continuous deployment(delivery)
+Pipeline is group of instructions
+CI (Continuous Integration): Automatically building and testing your code every time developers push changes to a shared repository.
+CD (Continuous Delivery/Deployment): Automatically deploying the code to staging or production environments after successful tests.
+👉 Goal: Deliver code faster, with fewer bugs.
+
+Before contiguous integration
+
+
+WHy Jenkins
+Jenkins is one of the most popular open-source automation servers used for CI/CD because it:
+Integrates with GitHub, Docker, Kubernetes, AWS, etc.
+Supports 1000+ plugins.
+Allows both pipeline as code (Jenkinsfile) and GUI-based job creation.
+
+Developer → GitHub → Jenkins (CI Server) → Test/Build → Deploy (CD)
+Key Components:
+
+Jenkins Master: Handles scheduling, managing nodes, and UI.
+
+Jenkins Agents (Nodes): Run the jobs (build/test/deploy).
+
+Plugins: For Git, Docker, Maven, etc.
+
+Jenkinsfile: Script that defines the pipeline
+
+Jenkins installation
+
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins -y
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+Step 2: Initial Setup
+
+Open the browser → http://localhost:8080
+Get the initial admin password:
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+Install Suggested Plugins.
+Create your Admin User.
+
+Step 3: Integrate Jenkins with GitHub
+
+Install Git plugin (if not installed).
+
+In Jenkins:
+
+Create a New Item → Freestyle Project or Pipeline.
+
+Under Source Code Management, choose Git.
+
+Enter your GitHub repo URL.
+
+Add GitHub credentials (PAT or SSH key).
+
+Optionally, configure GitHub Webhooks to trigger Jenkins when code is pushed:
+
+In GitHub → Repo Settings → Webhooks → Add:
+
+http://<your-jenkins-url>:8080/github-webhook
+
+🚀 Step 5: CD – Deploy Automatically
+
+You can add a deployment stage:
+Example (Deploying with Docker):
+stage('Deploy') {
+    steps {
+        sh '''
+        docker build -t myapp:latest .
+        docker stop myapp || true
+        docker rm myapp || true
+        docker run -d --name myapp -p 8080:8080 myapp:latest
+        '''
+    }
+}
+
+}
+You can also deploy to:
+
+AWS EC2 (using SSH)
+
+Kubernetes (using kubectl)
+
+Docker Hub (push images)
+
+Heroku / DigitalOcean / Render
+
+🧩 Step 6: Trigger the Pipeline
+You can trigger Jenkins jobs by:
+
+Code push (via GitHub Webhook)
+
+Manual build
+
+Scheduled builds (CRON syntax)
+Example:
+
+sql
+Copy code
+H/5 * * * *  → runs every 5 minutes
+
+📊 Step 7: Monitor and Logs
+
+Check Console Output for logs.
+
+Use Blue Ocean Plugin for a modern UI pipeline visualization.
+
+Configure Email / Slack notifications for failures.
+
+🧱 Common Plugins
+Plugin	Purpose
+Git Plugin	Integrate with Git
+Pipeline	For Jenkinsfile support
+Blue Ocean	Modern UI
+Docker Pipeline	Docker integration
+GitHub Integration	Webhook triggers
+Email Extension	Notifications
+
+🧩 Advanced: Jenkins + Docker + Kubernetes
+
+You can:
+Run Jenkins in a Docker container.
+Use Docker agents for isolated builds.
+Deploy to Kubernetes clusters automatically.

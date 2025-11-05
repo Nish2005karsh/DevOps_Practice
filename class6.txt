@@ -20,7 +20,6 @@ docker pull image_name:tag
 # Example
 docker pull nginx:latest
 
-
 4. Remove a local image:
 
 docker rmi image_name:tag

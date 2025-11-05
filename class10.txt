@@ -1,0 +1,151 @@
+Docker file
+A Dockerfile is a script that contains instructions for
+building a Docker image. It defines the base image, sets up
+environment variables, installs software, and configures
+the container for a specific application or service.
+
+Docker File Syntax
+Specifies the base image for the Docker image
+
+FROM image_name :tag
+#Example
+FROM ubuntu:20.04
+
+WORKDIR:
+Sets the working directory for subsequent instructions
+
+WORKDIR /path/to/directory
+# Example
+WORKDIR /app
+
+COPY:
+Copies files or directories from the build context to the
+container
+
+COPY host_source_path container_destination_path
+#Example
+copy . .
+
+RUN:
+Executes commands in the shell.
+RUN command1 && command2
+#Example
+RUN apt-get update && apt-get install -y curl
+
+ENV:
+Sets environment variables in the image.
+ENV KEY=VALUE
+#Example
+ENV NODE_VERSION=14
+
+EXPOSE:
+Informs Docker that the container listens on specified
+network ports at runtime.
+
+EXPOSE PORT
+#Example
+EXPOSE 8080
+
+CMD:
+Provides default commands or parameters for an
+executing container.
+CMD ["executable","param1","param2"]
+# Example
+CMD ["npm", "start"]
+
+or 
+CMD executable param1 param2
+#Example
+CMD npm run dev
+
+ENTRYPOINT:
+ENTRYPOINT ["executable","param1","param2"]
+#Example
+ENTRYPOINT["node.js","app.js"]
+or
+ENTRYPOINT executable param1 param2
+ENTRYPOINT node app.js
+
+ARG:
+Defines variables that users can pass at build-time to the
+builder with the docker build command.
+
+ARG VARIABLE_NAME=default_value
+# Example
+ARG VERSION=latest
+VOLUME:
+Creates a mount point for external volumes or other
+containers.
+
+VOLUME /path/to/volume
+# Example
+VOLUME /data
+
+LABEL:
+Adds metadata to an image in the form of key-value pairs.
+LABEL key="value"
+#Example
+LABEL version ="1.0" maintainer ="Nishkarsh"
+
+USER:
+Specifies the username or UID to use when running the
+image
+USER user_name
+#Example
+USER app
+
+ADD:
+Copies files or directories and can extract tarballs in the
+process.
+
+ADD source_path destination_path
+# Example
+ADD ./app.tar.gz /app
+
+# Use an official Node.js runtime as a base image
+
+FROM
+WORKDIR
+COPY
+RUN
+COPY
+EXPOSE
+ENV
+CMD
+ node:20-alpine
+
+
+
+ /app
+
+
+
+ package*.json ./
+
+
+
+ npm install
+
+
+
+ . .
+
+
+
+ 8080
+
+
+
+ NODE_ENV=production
+
+
+
+ node app.js
+# Set the working directory to /app
+
+# Copy package.json and package-lock.json to the
+working directory
+
+# Install dependencies
+
+# Copy the current dire
