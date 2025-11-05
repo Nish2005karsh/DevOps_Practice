@@ -1,0 +1,10 @@
+Kubernetes
+Configuration management tools like ansible and chef
+Why before docker ?
+
+Before Docker existed (pre-2013), developers and operations teams had a huge pain point:
+“It works on my machine!”
+You’d write an app in Node.js 18, but your teammate had Node.js 16 — and the app wouldn’t run.
+Production servers might have different libraries, OS versions, or dependencies.
+Setting up environments for each project took hours (installing Python, MySQL, Redis, etc.).
+Scaling apps meant manually configuring servers and copying code.
