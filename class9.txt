@@ -186,5 +186,5 @@ docker compose watch
 
 It watches build context for service and rebuild/refresh
 containers when files are updated
-
+and upgraded
 
