@@ -66,4 +66,47 @@ kubectl get pods | grep fortune-blue-app |  wc -1
 # Edit the deployment (interactive step)
 kubectl edit deployment fortune-app-blue
 
+Inside the editor 
+Press i to inser teh nodes
+Find the image line and change app verison from 1.0.0 to 2.0.0
+press escape and then do :wq to close the editor
+
+#Check replicaset
+kubectl get replicaset
+
+#Check rollout history '
+kubectl rollout history  deployment/fortune-app-Blue
+
+#Pause the rollout
+kubectl rollout pause deployment/fortune-app-blue
+
+#Check rollout status
+kubectl rollout status deployment/fortune-app-blue
+
+#Check version across pods
+for p  in $(kubectl get pods -1 app=fortune-app -o=jsonpath='{.items[*].metadata.name}');
+do echo  $p && curl -s http://$(kubectl get pod  $p -o=jsonpath='{.status.podIP})/version;echo;done
+
+#Resume the rollout
+kubectl rollout resume deployment/fortune-blue-app
+
+#Check status again
+kubectl rollout status deployment/fortune-blue-app
+
+#Verify roll back
+curl http://`kubectl get svc fortune-app -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version
+
+5.Canary deployment
+
+#View canary configuration
+cat deployment/fortune-app-canary.yaml
+
+#Create canary deployment
+kubectl create -f deployments/fortune-app-canary.yaml
+
+#Verify both deployments exist
+kubectl get deployments
+
+# Test canary (run multiple times to see traffic distribution)
+for i in {1..10}; do curl -s http://`kubectl get svc fortune-app -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version; echo; done
 
