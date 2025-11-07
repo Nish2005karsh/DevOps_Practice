@@ -16,3 +16,71 @@ kubectl apply -f release/kubernetes-manifests.yaml
 kubectl get pods
 export EXTERNAL_IP=$(kubectl get service frontend-external | awk 'BEGIN { cnt=0; } { cnt+=1; if (cnt > 1) print $4; }')
 curl -o /dev/null -s -w "%{http_code}\n" http://$EXTERNAL_IP
+
+# Task 4: Create Logs-based Metric
+# (UI-based task - see detailed steps)
+
+# Task 5: Create Alerting Policy
+# (UI-based task - see detailed steps)
+
+# Trigger Error
+# Open loadgenerator-external endpoint and start 300 users
+
+# Task 6: Fix the Issue
+# Task 6: Fix the Issue
+grep -A1 -ni ENABLE_RELOAD release/kubernetes-manifests.yaml
+sed -i -e '373,374d' release/kubernetes-manifests.yaml
+kubectl apply -f release/kubernetes-manifests.yaml
+
+Step by step solutions
+
+Objective->Connect to the GKE CLUSTERS   and verify if they are ready
+gcloud container clusters list
+
+Get cluster credentials
+gcloud container clusters get-credentials central --zone Zone
+Zone like ->us-east4 or us-west-9
+
+Verify nodes
+kubectl get nodes
+(Around 4 nodes ready)
+
+enable gemini code assists
+gcloud services enable cloudaicompanion.googleapis.com
+
+Open Cloud Shell Editor (click Open Editor icon) and enable Gemini:
+Click Settings gear icon → Search "Gemini Code Assist"
+Check Geminicodeassist: Enable
+Click Cloud Code status bar → Authorize → Select your project
+✅ Check My Progress: Infrastructure Setup Complete
+
+
+Task 2: Deploy the Application
+
+Objective: Deploy the buggy Hipster Shop microservices app.
+
+1.Clone repository:
+git clone https://github.com/xiangshen-dk/microservices-demo.gi
+cd microservices-demo
+
+2,Optional - Use Gemini to explain the manifest:
+Open microservices-demo/release/kubernetes-manifests.yaml in Editor
+Click Gemini icon → Select "Explain this"
+Send prompt: "As a Kubernetes Architect at Cymbal AI, provide a formal and comprehensive explanation..."
+
+3.Deploy the application:
+kubectl apply -f release/kubernetes-manifests.yaml
+
+4.Wait for all pods to be in a running state
+
+kubectl get pods
+
+5.Get the frontend IP address:
+export EXTERNAL_IP=$(kubectl get service frontend-external | awk 'BEGIN { cnt=0; } { cnt+=1; if (cnt > 1) print $4; }')
+
+6.Verify the app is accessible:
+curl -o /dev/null -s -w "%{http_code}\n" http://$EXTERNAL_IP
+
+Expected output: 200
+
+Alerting Policy
