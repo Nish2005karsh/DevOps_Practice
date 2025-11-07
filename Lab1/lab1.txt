@@ -14,3 +14,56 @@ Initial Setup
 commd->gcloud config set compute/zone us-east-4-b.
 gcloud->google cloud
 
+2.Get the sample code
+commd->gcloud storage cp -r gs://spls/gsp053/kubernetes.
+cd kubernetes
+
+3.Create a cluster(takes a feew minutes)
+gcloud container clusters create bootcamp\--machine-type e2-small \--num-nodes 3
+\--scopes "https://www.googleapis.com/auth/projecthosting,storage-rw"
+
+Step2:Create deployment
+
+# View the deployment configuration
+1.cat deployment/fortune-app-blue.yaml
+#Create deployment
+
+kubectl create -f deployments/fortune-app-blue.yaml
+
+#Verify deployments
+kubectl get deployments
+
+#Verify replicaset
+kubectl get replicasets
+
+#verify  the pods
+kubectl get pods
+
+#Create services
+kubectl create -f services/fortune-app.yaml
+
+#Get service external IP
+kubectl get services fortune-app
+
+#test the service
+curl http://`kubectl get svc fortune-app -o =jsonpath="{status.loadBalancer.ingres[0].ip}"`\version
+
+3.Scaling deployment
+#Scale upto 5 replicas
+
+kubectl scale deployment fortune-app-blue --replicas=5
+
+#Verify count(should show  5)
+kubectl get pods | grep fortune-app-blue | wc -1
+
+#Scae back to three(3) replicas
+kubectl scale deployment fortune-app-blue --replicas=3
+
+#Verify count(should show 3)
+kubectl get pods | grep fortune-blue-app |  wc -1
+
+4.Rolling updates
+# Edit the deployment (interactive step)
+kubectl edit deployment fortune-app-blue
+
+
