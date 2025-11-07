@@ -1,0 +1,11 @@
+Managing Deployment using Kubernetes engine
+Kubernetes is used to manage the docker containers
+
+Overview:
+Dev Ops practices will regularly make use of multiple deployments to manage application deployment scenarios such as "Continuous deployment", "Blue-Green deployments", "Canary deployments" and more. This lab teaches you how to scale and manage containers so you can accomplish these common scenarios where multiple heterogeneous deployments are being used.
+
+In this lab , i:
+Use the kubectl tool
+Create deployment yaml files
+Launch, update, and scale deployments
+
