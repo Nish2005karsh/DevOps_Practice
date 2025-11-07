@@ -9,3 +9,8 @@ Use the kubectl tool
 Create deployment yaml files
 Launch, update, and scale deployments
 
+Initial Setup
+1.Set the zone
+commd->gcloud config set compute/zone us-east-4-b.
+gcloud->google cloud
+
