@@ -1,0 +1,2 @@
+Enterprise level (grade) deployment Pipeline Node.js+React js
+Structure of app
