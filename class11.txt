@@ -1,2 +1,30 @@
 Kubernetes
 Commands
+
+1.Cluster Information
+
+kubectl version //Show client and server version
+kubectl cluster-info //Display cluster info
+kubectl get nodes //List of nodes in a cluster
+kubectl describe node <node>  //Show detailed info about a node
+kubectl get namespace //List all namespaces
+
+2.Pod Management
+
+kubectl get pods  //List all pods
+kubectl get pods -A //List pods in all namespaces
+kubectl describe pod <pod-name> //Detailed info about a pod
+kubectl logs<pod-name> //Show logs from a pod
+kubectl exec -it <pod-name> --bash //Access pod shell
+kubectl delete pod <pod-name>  //Delete a specific pod
+
+3.Deployment Management
+
+kubectl get deployments //List all deployments
+kubectl create deployment nginx --image=nginx //Create a simple deployment
+kubectl describe deployment nginx //Show detailed deployment
+kubectl scale deployment nginx --replicas=3  # Scale up/down pods
+kubectl rollout status deployment nginx      # Check deployment rollout status
+kubectl delete deployment nginx              # Delete a deployment
+
+4. Service Management
