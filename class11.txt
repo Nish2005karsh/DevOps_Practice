@@ -28,3 +28,49 @@ kubectl rollout status deployment nginx      # Check deployment rollout status
 kubectl delete deployment nginx              # Delete a deployment
 
 4. Service Management
+
+kubectl get services                    # List all services
+kubectl expose deployment nginx --type=NodePort --port=80  # Expose deployment
+kubectl describe service nginx           # Show service details
+kubectl delete service nginx             # Delete a service
+
+5. Configurations & Files
+kubectl apply -f deployment.yaml       # Apply a YAML config
+kubectl delete -f deployment.yaml      # Delete resources defined in YAML
+kubectl get all                        # List all resources in current namespace
+
+6.Namespace Operations
+
+
+kubectl create namespace dev
+kubectl get namespaces
+kubectl config set-context --current --namespace=dev  # Switch namespace
+kubectl delete namespace dev
+
+
+7. Debugging & Troubleshooting
+
+kubectl describe pod <pod-name>         # Details & events of a pod
+kubectl logs <pod-name> --previous      # Logs from crashed pod
+kubectl top pod                         # Show resource usage (needs metrics server)
+kubectl get events --sort-by=.metadata.creationTimestamp  # View events
+
+8. Node & Cluster Maintenance
+
+kubectl drain <node-name>               # Safely remove node from cluster
+kubectl cordon <node-name>              # Mark node unschedulable
+kubectl uncordon <node-name>            # Mark node schedulable again
+
+9. Contexts & Config
+
+
+kubectl config get-contexts
+kubectl config current-context
+kubectl config use-context <context-name>
+
+
+10. Useful Shortcuts
+kubectl get po,svc,deploy   # List pods, services, and deployments together
+kubectl get all -n kube-system  # Get all resources in system namespace
+kubectl explain pod         # Explain what a Pod is
+
