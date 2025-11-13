@@ -1,0 +1,230 @@
+Task 
+This hands-on lab lets you do the lab activities in a real cloud environment, not in a simulation or demo environment. It does so by giving you new, temporary credentials you use to sign in and access Google Cloud for the duration of the lab.
+
+To complete this lab, you need:
+
+Access to a standard internet browser (Chrome browser recommended).
+Note: Use an Incognito (recommended) or private browser window to run this lab. This prevents conflicts between your personal account and the student account, which may cause extra charges incurred to your personal account.
+Time to complete the lab—remember, once you start, you cannot pause a lab.
+Note: Use only the student account for this lab. If you use a different Google Cloud account, you may incur charges to that account.
+Challenge scenario
+You were onboarded at Cymbal Shops just a few months ago. You have spent a lot of time working with containers in Docker and Artifact Registry and have learned the ropes of managing new and existing deployments on GKE. You've had practice updating manifests as well as scaling, monitoring, and debugging applications running on your clusters.
+
+cymbal shops logo
+
+Your team would like you to start managing their Kubernetes deployments to ensure smooth rollouts and application updates to their new e-commerce website. Before you switch to this new role, the development team would like you to demonstrate your new skills. As part of this demonstration, they have a list of tasks they would like to see you do in an allotted period of time in a sandbox environment.
+
+Your challenge
+As part of the sandbox environment, your developers have created an Artifact Registry repository named cluster name that has some code with a basic example application that you will deploy onto a cluster.
+
+Note: This image created in the repo is a containerized version of the code you will be downloading from the spls/gsp510/hello-app bucket later in the lab.
+Your tasks will include the following:
+
+Creating a GKE cluster based on a set of configurations provided.
+Enabling Managed Prometheus on the cluster for metrics monitoring.
+Deploying a Kubernetes manifest onto the cluster, and debugging the errors.
+Creating a logs-based metric and alerting policy for the errors on the Kubernetes cluster.
+Fixing the manifest errors, containerizing your application code and pushing it to Artifact Registry using Docker.
+Exposing a service for your application on the cluster and verifying your updates.
+Task 1. Create a GKE cluster
+The new Cymbal Shops e-commerce website will run natively on GKE and the team would like to see your experience working and setting up clusters. In this section, you will need to create a Kubernetes cluster based on a set of configurations provided to run your demo applications on.
+
+Create a GKE cluster named cluster name with the following configuration:
+Setting	Value
+Zone	ZONE
+Release channel	Regular
+Cluster version	1.27.8 or newer
+Cluster autoscaler	Enabled
+Number of nodes	3
+Minimum nodes	2
+Maximum nodes	6
+Click Check my progress to verify the objective.
+
+Create a GKE cluster
+Task 2. Enable Managed Prometheus on the GKE cluster
+As part of the e-commerce website strategy, Cymbal Shops would like to start using Managed Prometheus for metrics and monitoring on the cluster to ensure a good experience for their customers. In this section, you will enable Managed Prometheus on the cluster for metric monitoring and create a namespace to deploy a sample Prometheus application and pod monitoring on.
+
+Enable the Prometheus managed collection on the GKE cluster.
+
+Create a namespace on the cluster named namespace name.
+
+Download a sample Prometheus app:
+
+gsutil cp gs://spls/gsp510/prometheus-app.yaml .
+Copied!
+Update the <todo> sections (lines 35-38) with the following configuration.
+
+containers.image: nilebox/prometheus-example-app:latest
+containers.name: prometheus-test
+ports.name: metrics
+Deploy the application onto the namespace name namespace on your GKE cluster.
+
+Download the pod-monitoring.yaml file:
+
+gsutil cp gs://spls/gsp510/pod-monitoring.yaml .
+Copied!
+Update the <todo> sections (lines 18-24) with the following configuration:
+
+metadata.name: prometheus-test
+labels.app.kubernetes.io/name: prometheus-test
+matchLabels.app: prometheus-test
+endpoints.interval: interval period
+Apply the pod monitoring resource onto the namespace name namespace on your GKE cluster.
+
+Click Check my progress to verify the objective.
+
+Enable Managed Prometheus on the GKE cluster
+Task 3. Deploy an application onto the GKE cluster
+The development team at Cymbal Shops will be consistently releasing new application code to the cluster that you will have to successfully deploy into production. In this section, you will deploy a Kubernetes manifest onto the cluster and inspect the issue.
+
+Download the demo deployment manifest files:
+gsutil cp -r gs://spls/gsp510/hello-app/ .
+Copied!
+Create a deployment onto the namespace name namespace on your GKE cluster from the helloweb-deployment.yaml manifest file. It is located in the hello-app/manifests folder.
+
+Verify you have created the deployment, and navigate to the helloweb deployment details page. You should see the following error:
+
+invalid image name error
+
+This error seems to stem from an invalid image name in the manifest that you just deployed. Before you fix the image name, you will create a logs-based metric and alerting policy so that your team can be notified if this happens again in the future.
+
+Click Check my progress to verify the objective.
+
+Deploy an application onto the GKE cluster
+Task 4. Create a logs-based metric and alerting policy
+Cymbal Shops would like to set up some logs based metrics and alerting policies to aggregate the number of errors and warnings in their Kubernetes pods and set up an alerting mechanism for their clusters when a certain amount of errors are above a specific threshold. In this section, you will demonstrate your knowledge on building these metrics and alerting policies for the team.
+
+Create a logs-based metric
+In the Logs Explorer, create a query that exposes warnings/errors you saw in the previous section on the cluster.
+Hint: your query should have just one Resource Type and one Severity selected.
+If the query is correct, upon running you should see the following errors show up in the logs:
+
+Error: InvalidImageName
+Failed to apply default image tag "<todo>": couldn't parse image reference "<todo>": invalid reference format
+Create a logs-based metric from this query. For Metric type, use Counter and for the Log Metric Name use pod-image-errors.
+Create an alerting policy
+Create an Alerting Policy based on the logs-based metric you just created. Use the following details to configure your policy:
+Rolling Window: 10 min
+Rolling window function: Count
+Time series aggregation: Sum
+Condition type: Threshold
+Alert trigger: Any time series violates
+Threshold position: Above threshold
+Threshold value: 0
+Use notification channel: Disable
+Alert policy name: Pod Error Alert
+Click Check my progress to verify the objective.
+
+Create a logs-based metric and alerting policy
+Task 5. Update and re-deploy your app
+The development team would like to see you demonstrate your knowledge on deleting and updating deployments on the cluster in case of an error. In this section, you will update a Kubernetes manifest with a correct image reference, delete a deployment, and deploy the updated application onto the cluster.
+
+Replace the <todo> in the image section in the helloweb-deployment.yaml deployment manifest with the following image:
+
+us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+Delete the helloweb deployment from your cluster.
+
+Deploy the updated helloweb-deployment.yaml manifest onto your cluster on the namespace name namespace.
+
+You should verify that it has deployed correctly with no errors. Your Kubernetes Workloads page should resemble the following:
+
+helloweb deployed with no errors
+
+Click Check my progress to verify the objective.
+
+Update and re-deploy your app
+Task 6. Containerize your code and deploy it onto the cluster
+Lastly, as part of the Cymbal Shops e-commerce strategy, the application team will be providing you code that you will need to containerize and store in a registry, and then update the cluster with the newest version of that code.
+
+In this section, you will containerize your application code, update an image in Artifact Registry, and set that to the image on your cluster. Your team has a repository in Artifact Registry named repo name that contains a containerized version of the hello-app sample app in Docker. You will update the code for the build locally, then push a new version to the repository.
+
+In the hello-app directory, update the main.go file to use Version: 2.0.0 on line 49.
+
+Use the hello-app/Dockerfile to create a Docker image with the v2 tag.
+
+Note: you should follow the Artifact Registry naming conventions as detailed here.
+Push the newly built Docker image to your repository in Artifact Registry using the v2 tag.
+
+Set the image on your helloweb deployment to reflect the v2 image you pushed to Artifact Registry.
+
+Expose the helloweb deployment to a LoadBalancer service named service name on port 8080, and set the target port of the container to the one specified in the Dockerfile.
+
+Navigate to the external load balancer IP address of the service name service, and you should see the following text returned by the service:
+
+Hello, world!
+Version: 2.0.0
+Hostname: helloweb-6fc7476576-cvv5f
+Note: It may take a few minutes for the webpage to load.
+Click Check my progress to verify the objective.
+
+Containerize your code and deploy it onto the cluster
+Congratulations!
+Congratulations! In this lab you verified your skills on creating a GKE cluster based on a set of configurations and enabling the Prometheus managed collection. You also troubleshooted errors on a cluster and created a logs-based metric and alerting policy, and then updated Kubernetes manifests to fix the issue. Lastly, you containerized your application code and pushed a new build to a repository in Artifact Registry using Docker, updated your cluster to reflect the new image, and exposed a service on the cluster. You are ready to start managing Kubernetes in your own environments!
+
+
+Step 1 ->
+Create a gke cluster
+
+gcloud container clusters create cluster_name(cluster1)\
+--zone=Zone\
+--release-channel=regular\
+--cluster-version=1.27.8 \
+--enable-autoscaling \
+--num-nodes=3\
+--min-nodes=2\
+--max-nodes=6
+
+Task 2: Prometheus Setup
+#Enable managed collection
+gclod container clusters update cluster_name(cluster1)\
+--zone=Zone\
+--enable-manage-prometheus
+
+#Create a namespace
+kubectl create namespace namespace_name(namespace1)
+
+#Download and deploy app
+gsutil cp gs://spls/gsp510/prometheus-app.yaml .
+
+
+# Edit lines 35-38, then:
+kubectl apply -f prometheus-app.yaml -n namespace-name
+
+# Download and apply pod monitoring
+gsutil cp gs://spls/gsp510/pod-monitoring.yaml .
+# Edit lines 18-24, then:
+kubectl apply -f pod-monitoring.yaml -n namespace-name
+
+Task 3: Deploy Problematic App
+gsutil cp -r gs://spls/gsp510/hello-app/ .
+kubectl apply -f hello-app/manifests/helloweb-deployment.yaml -n namespace-name
+
+Task 5: Fix Deployment
+# Edit helloweb-deployment.yaml: replace <todo> with:
+# us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+
+# Delete and redeploy
+kubectl delete deployment helloweb -n namespace-name
+kubectl apply -f hello-app/manifests/helloweb-deployment.yaml -n namespace-name
+
+
+#Containerize and Deploy# Edit main.go line 49 to "Version: 2.0.0"
+
+# Build and push (replace PROJECT_ID and REPO_NAME)
+docker build -t REGION-docker.pkg.dev/PROJECT_ID/repo-name/hello-app:v2 ./hello-app
+docker push REGION-docker.pkg.dev/PROJECT_ID/repo-name/hello-app:v2
+
+# Update deployment
+kubectl set image deployment/helloweb \
+  -n namespace-name \
+  hello-app=REGION-docker.pkg.dev/PROJECT_ID/repo-name/hello-app:v2
+
+# Expose service
+kubectl expose deployment helloweb \
+  -n namespace-name \
+  --name=service-name \
+  --type=LoadBalancer \
+  --port=8080 \
+  --target-port=8080
+
+
