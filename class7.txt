@@ -5,7 +5,6 @@ docker run container_name image_name
 docker run myapp
 
 2. Run a named container from an image:
-
 docker --name run container_name image_name:tag
 # Example
 docker --name run my_container myapp:v1

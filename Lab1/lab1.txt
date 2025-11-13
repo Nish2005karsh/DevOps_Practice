@@ -110,3 +110,48 @@ kubectl get deployments
 # Test canary (run multiple times to see traffic distribution)
 for i in {1..10}; do curl -s http://`kubectl get svc fortune-app -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version; echo; done
 
+6.Blue green deployment
+
+#Update service  to point to blue only
+kubectl apply -f services/fortune-app-blue-service.yaml
+
+# Create green deployment
+kubectl create -f  deployments/fortune-app-green-service.yaml
+
+# Verify still serving v1.0.0
+curl http://`kubectl get svc fortune-app -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version
+
+#Switch service to green
+kubectl apply -f services/fortune-app-green-service.yaml
+
+# Verify now serving v2.0.0
+curl http://`kubectl get svc fortune-app -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version
+
+#Roll back to Blue
+kubectl apply -f services/fortune-app-blue-service.yaml
+
+# Verify rollback to v1.0.0
+curl http://`kubectl get svc fortune-app -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version
+
+
+Important commands
+
+->check the cluster exists
+gcloud containers cluster list
+
+->Clean up
+gcloud container clusters delete bootcamp  --zone=us-east4-b --quiet
+
+->Recreate teh cluster
+gcloud container clusters create cluster_name(bootcamp)\
+--machine-type e2-small\
+--num-nod=3\
+--scopes  "https://www.googleapis.com/auth/projecthosting,storage-rw"
+
+->Veriy if the cluster is ready 
+gcloud cluster container list
+
+->Continue with the tab
+
+kubectl explain deployment
+

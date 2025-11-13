@@ -84,3 +84,117 @@ curl -o /dev/null -s -w "%{http_code}\n" http://$EXTERNAL_IP
 Expected output: 200
 
 Alerting Policy
+
+Task 5: Create an Alerting Policy
+Objective: Set up an alert that triggers when error rate exceeds threshold.
+Go to Monitoring: Navigation Menu > Monitoring > Alerting
+Click Create Policy (or "Try It!" for new UI)
+Select Metric:
+Click Select a metric dropdown
+Deselect "Active" checkbox
+Search: Error_Rate
+Select: Kubernetes Container > Logs-Based Metric > logging/user/Error_Rate_SLI
+Click Apply
+Configure Condition:
+Set Rolling window function to Rate
+Click Next
+Set Threshold value to 0.5
+Click Next
+Configure Notifications:
+Disable "Use notification channel" (for lab purposes)
+Click Next
+Name and Create:
+Alert name: Error Rate SLI
+Click Next
+Review and click Create Policy
+✅ Check My Progress: Alerting Policy Created
+Trigger Application Error (Load Test)
+Objective: Generate enough load to trigger the intentional bug.
+Find Load Generator URL:
+Go to Kubernetes Engine > Gateways, Services & Ingress > Services tab
+Find loadgenerator-external → Click its Endpoints IP
+Configure Locust:
+Open the load generator page
+Number of users: 300
+Hatch rate: 30
+Host: Copy frontend-external IP (without port)
+Click Start swarming
+Monitor Failures:
+Click Failures tab in Locust UI
+Observe 500 errors increasing
+In Online Boutique: Click products → should see HTTP 500 errors or extreme slowness
+Confirm Alert and Application Errors
+Objective: Verify the alert fired and investigate logs.
+Check Alert:
+Go to Monitoring > Alerting
+Wait 2-5 minutes → Incident should appear for Error_Rate_SLI
+Click the incident link
+View Logs from Alert:
+In incident details, scroll to Logs section
+Click View in Logs Explorer → Select your project
+Filter for Errors:
+In Logs Explorer, click Severity dropdown → Add Error
+Or click Error in the log fields panel
+Query should now include: severity=ERROR
+Analyze Error Messages:
+Expand any error event → View textPayload
+You'll see: Connect Failed errors from recommendationservice
+Cannot connect to downstream services for products/recommendations
+Troubleshoot Using GKE Dashboard & Logs
+Objective: Identify the root cause in ProductCatalogService.
+Check GKE Workloads:
+Go to Kubernetes Engine > Workloads
+Find productcatalogservice
+Observe: Pod is constantly crashing and restarting (Active Revisions show multiple restarts)
+View Container Logs:
+Method 1: Click Logs tab → Click external link icon to open in Logs Explorer
+Method 2: On Deployment details page → Click Container logs link
+Analyze Log Patterns:
+Notice: Repeated "successfully parsed product catalog json" messages in short time periods
+At bottom: Look for panic error:
+Copy
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation
+Investigate Source Code:
+bash
+Copy
+grep -nri 'successfully parsed product catalog json' src
+Output shows: src/productcatalogservice/server.go:237
+Use Gemini to Explain Code:
+Open microservices-demo/src/productcatalogservice/server.go
+Click Gemini icon → "Explain this"
+Send prompt: "You are a Kubernetes Architect... explain this server.go file..."
+Key finding: reloadCatalog variable causes catalog reload on every request when ENABLE_RELOAD is enabled
+Verify Reload Setting:
+bash
+Copy
+grep -A1 -ni ENABLE_RELOAD release/kubernetes-manifests.yaml
+Shows lines 373-374 with value "1"
+Task 6: Fix the Issue and Verify
+Objective: Disable catalog reloading and confirm resolution.
+Delete the problematic environment variable:
+bash
+Copy
+sed -i -e '373,374d' release/kubernetes-manifests.yaml
+Redeploy the fix:
+bash
+Copy
+kubectl apply -f release/kubernetes-manifests.yaml
+Output should show only productcatalogservice configured
+Wait for Pod Stabilization:
+Go to Kubernetes Engine > Workloads > productcatalogservice
+Wait 2-3 minutes until pod stops crashing
+Confirm Active Revisions shows stable pod
+Verify Log Improvement:
+Return to Logs Explorer (or refresh existing tab)
+Add to query: jsonPayload.message:"catalog reloading"
+Run Query → Should see "Enable catalog reloading" message confirming feature was enabled before fix
+After fix: Repeated parsing messages should be gone
+Test Application:
+Go back to Online Boutique (frontend-external IP)
+Click products → should load quickly without HTTP 500 errors
+Verify Load Generator:
+Return to Locust UI
+Click Reset Stats button
+Failure rate should stay at 0% (no new failures)
+✅ Check My Progress: Issue Fixed and Verified

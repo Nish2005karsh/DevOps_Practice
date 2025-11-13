@@ -1,9 +1,7 @@
 Practicing Docker
 Happy Dockering!
-
 Docker Images
 1. Build an image from a Dockerfile:
-
 docker -t build image_name path_to_dockerfile
 # Example
 docker -t build myapp .

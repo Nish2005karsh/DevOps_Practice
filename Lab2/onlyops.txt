@@ -1,2 +1,8 @@
 Enterprise level (grade) deployment Pipeline Node.js+React js
 Structure of app
+/app
+  /backend   (Node.js API)
+  /frontend  (React)
+  /infra     (Terraform/K8s)
+
+Phase 1->Local Containerization
