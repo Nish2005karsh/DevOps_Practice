@@ -1,0 +1,117 @@
+Learning AWS
+
+AWS CLI Commands — The Ultimate Practical List
+
+1. General Commands
+
+aws configure                  # Set access key, secret key, region, output format
+aws sts get-caller-identity    # Check who you are (account, user, ARN)
+aws help                       # See AWS CLI help
+aws <service> help             # Help for specific service
+aws configure list             # See current AWS config
+
+
+2. EC2 (Elastic Compute Cloud)
+
+Manage virtual servers (instances).
+aws ec2 describe-instances                    # List all EC2 instances
+aws ec2 start-instances --instance-ids <id>   # Start instance
+aws ec2 stop-instances --instance-ids <id>    # Stop instance
+aws ec2 terminate-instances --instance-ids <id>  # Terminate instance
+aws ec2 reboot-instances --instance-ids <id>  # Reboot instance
+
+aws ec2 describe-images --owners self         # List your AMIs
+aws ec2 describe-key-pairs                    # Show key pairs
+aws ec2 create-key-pair --key-name mykey      # Create new key pair
+aws ec2 describe-security-groups              # View security groups
+aws ec2 create-security-group --group-name test-sg --description "test"  # Create SG
+
+🪣 3. S3 (Simple Storage Service)
+For managing buckets and files.
+
+aws s3 ls                                         # List all S3 buckets
+aws s3 mb s3://my-bucket-name                     # Create new bucket
+aws s3 cp file.txt s3://my-bucket-name/           # Upload a file
+aws s3 cp s3://my-bucket-name/file.txt .          # Download a file
+aws s3 rm s3://my-bucket-name/file.txt            # Delete a file
+aws s3 sync . s3://my-bucket-name/                # Sync local folder to bucket
+aws s3 rb s3://my-bucket-name --force             # Remove bucket and all files
+
+4. IAM (Identity & Access Management)
+
+Handle users, roles, and policies.
+
+aws iam list-users                               # List all users
+aws iam create-user --user-name devuser          # Create user
+aws iam delete-user --user-name devuser          # Delete user
+aws iam list-roles                               # List roles
+aws iam create-role --role-name test-role --assume-role-policy-document file://trust.json
+aws iam attach-user-policy --user-name devuser --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
+aws iam list-policies --scope AWS                # List all AWS-managed policies
+
+5. ECR (Elastic Container Registry)
+For Docker image storage.
+
+aws ecr  create-repository --repository-name myapp
+aws ecr desxribe-repositories
+aws ecr get-login-password | docker login  --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
+aws ecr list-images  -repository-name myapp
+aws ecr delete-repository  --repository-name myapp --force
+
+6. EKS (Elastic Kubernetes Service)
+For managing Kubernetes clusters on AWS.
+
+
+aws eks list-clusters
+aws eks describe-cluster --name my-cluster
+aws eks update-kubeconfig --name my-cluster      # Connect kubectl to EKS
+aws eks create-cluster --name my-cluster --role-arn <role> --resources-vpc-config subnetIds=<ids>
+aws eks delete-cluster --name my-cluster
+
+7. Lambda (Serverless Functions)
+aws lambda list-functions
+aws lambda create-function --function-name my-func \
+  --runtime python3.9 --role <role-arn> \
+  --handler lambda_function.lambda_handler \
+  --zip-file fileb://function.zip
+aws lambda update-function-code --function-name my-func --zip-file fileb://function.zip
+aws lambda invoke --function-name my-func output.json
+aws lambda delete-function --function-name my-func
+
+
+8. CloudFormation
+Infrastructure as Code (IaC) service.
+
+aws cloudformation list-stacks
+aws cloudformation create-stack --stack-name my-stack --template-body file://template.yaml
+aws cloudformation describe-stacks --stack-name my-stack
+aws cloudformation delete-stack --stack-name my-stack
+
+
+9. CloudWatch
+For logs and monitoring.
+
+aws cloudwatch list-metrics
+aws cloudwatch get-metric-data --metric-data-queries file://queries.json
+aws logs describe-log-groups
+aws logs get-log-events --log-group-name <group> --log-stream-name <stream>
+
+10. VPC & Networking
+aws ec2 describe-vpcs
+aws ec2 create-vpc --cidr-block 10.0.0.0/16
+aws ec2 describe-subnets
+aws ec2 describe-route-tables
+
+11. Misc / Utilities
+aws ec2 describe-regions              # List all AWS regions
+aws ec2 describe-availability-zones   # Zones in your region
+aws ssm start-session --target <instance-id>  # SSH via SSM
+aws resourcegroupstaggingapi get-resources    # List all tagged resources
+
+Bonus
+
+aws <service> list-*          # List resources
+aws <service> describe-*      # Describe resources
+aws <service> create-*        # Create new resource
+aws <service> delete-*        # Delete resource
+aws <service> update-*        # Update resource
