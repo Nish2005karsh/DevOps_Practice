@@ -15,3 +15,63 @@
 11. git checkout <branch> - Switch to a different branch.
 12. git merge <branch> - Merge changes from another branch into the current branch.
 
+⚡️Git Branching Commands:
+1. git branch <new_branch> - Create a new branch.
+2. git branch -d <branch> - Delete a branch.
+3. git branch -m <old_branch> <new_branch> - Rename a branch.
+4. git checkout -b <new_branch> - Create a new branch and switch to it.
+
+⚡️Git Remote Commands:
+1. git remote add <name> <url> - Add a remote repository.
+2. git remote remove <name> - Remove a remote repository.
+3. git remote rename <old_name> <new_name> - Rename a remote repository.
+4. git fetch <remote> - Fetch changes from a remote repository.
+5. git push <remote> <branch> - Push changes to a remote repository.
+6. git pull <remote> <branch> - Pull changes from a remote repository.
+
+⚡️Git Merge and Conflict Resolution Commands:
+1. git merge <branch> - Merge changes from another branch into the current branch.
+2. git merge --abort - Abort a merge operation.
+3. git merge --continue - Continue a merge operation after resolving conflicts.
+4. git status - Check the status of your repository during a merge operation.
+
+⚡️Git Tagging Commands:
+1. git tag <tag_name> - Create a lightweight tag.
+2. git tag -a <tag_name> -m "<tag_message>" - Create an annotated tag.
+3. git tag -d <tag_name> - Delete a tag.
+4. git tag -l - List all tags in the repository.
+
+⚡️Git Reset and Revert Commands:
+1. git reset <commit> - Reset your repository to a specific commit.
+2. git reset --hard <commit> - Reset your repository to a specific commit and discard all changes.
+3. git revert <commit> - Revert changes made by a specific commit.
+4. git revert --no-commit <commit> - Revert changes made by a specific commit without committing the changes.
+
+⚡️Git Stash Commands:
+1. git stash - Stash changes in your repository.
+2. git stash list - List all stashed changes.
+3. git stash apply - Apply stashed changes to your repository.
+4. git stash drop - Delete a stashed change.
+5. git stash pop - Apply and delete a stashed change.
+
+⚡️Git Submodule Commands:
+1. git submodule add <repository> - Add a submodule to your repository.
+2. git submodule init - Initialize a submodule.
+3. git submodule update - Update a submodule.
+4. git submodule status - Check the status of a submodule.
+5. git submodule summary - Summarize changes made to a submodule.
+
+⚡️Git Cherry-Pick Commands:
+1. git cherry-pick <commit> - Apply changes made by a specific commit to your current branch.
+2. git cherry-pick --abort - Abort a cherry-pick operation.
+3. git cherry-pick --continue - Continue a cherry-pick operation after resolving conflicts.
+
+⚡️Git Rebase Commands:
+1. git rebase <branch> - Rebase your current branch onto another branch.
+2. git rebase --abort - Abort a rebase operation.
+3. git rebase --continue - Continue a rebase operation after resolving conflicts.
+4. git rebase -i <commit> - Interactively rebase changes made since a specific commit.
+
+⚡️Git Diff Commands:
+1. git diff - Display differences between your working directory and the staging area.
+2. git diff --cached - Display differences between the staging area and the last commit.
