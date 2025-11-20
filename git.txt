@@ -1,0 +1,17 @@
+▶️ List of 📱 Git commands for DevOps Engineer, along with their usage:
+
+
+⚡️Basic Git Commands:
+1. git init - Initialize a new Git repository.
+2. git clone <repository> - Clone an existing Git repository.
+3. git config --global user.name "<Your Name>" - Set your username for Git.
+4. git config --global user.email "<your_email@example.com>" - Set your email address for Git.
+5. git status - Check the status of your repository.
+6. git add <file> - Stage a file for the next commit.
+7. git add . - Stage all changes in the current directory and subdirectories.
+8. git commit -m "<commit_message>" - Commit changes with a meaningful commit message.
+9. git log - Display a log of all commits made to the repository.
+10. git branch - List all branches in the repository.
+11. git checkout <branch> - Switch to a different branch.
+12. git merge <branch> - Merge changes from another branch into the current branch.
+
