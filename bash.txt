@@ -1,0 +1,4 @@
+What is Bash Scripting?
+Bash (Bourne Again SHell) is a Unix shell and command language that lets you interact with your operating system by typing commands. Bash scripting involves writing sequences of commands in a text file (script) and executing them to automate tasks like file manipulation, task scheduling, data processing, and more.
+
+Bash scripts can save you hours of work by automating tasks, enhancing productivity, and reducing the risk of human error in repetitive tasks. It’s no surprise that Bash scripting has become a fundamental skill in DevOps, where efficiency is key.
