@@ -11,3 +11,8 @@ Flexible and Powerful: With Bash, you can combine commands, control flow, and st
 Cross-Platform Compatibility: Bash is available on nearly all Unix-based systems, including Linux and macOS, ensuring scripts can run on multiple platforms.
 Integration with DevOps Tools: Bash scripts can be integrated with tools like Jenkins, Docker, and Kubernetes, enabling seamless automation across your infrastructure.
 These benefits make Bash scripting a must-have skill for anyone in DevOps or system administration.
+
+Step 1: Create a Script File
+Start by creating a new file with a .sh extension. You can use any text editor to create it:
+
+nano my_first_script.sh
